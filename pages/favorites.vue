@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GridList @remove="remove" :items="favorites" />
+    <GridList :items="favorites" />
   </div>
 </template>
 <script>
