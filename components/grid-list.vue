@@ -1,29 +1,23 @@
 <template>
   <div class="grid-wrapper">
-    <div v-for="item in items" :key="item">
+    <div v-for="item in items" :key="item.img">
       <div
-        :class="{ active: favorites.includes(item) }"
+        :class="{ active: item.favorite }"
         class="item"
-        @click="check(favorites.includes(item), item)"
+        @click="check(item.favorite, item.img)"
       >
-        <img :src="item" alt="alt" class="image" />
+        <img :src="item.img" alt="alt" class="image" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import { mapMutations } from "vuex";
-// хранения данных по тз вызывает душевные и моральные страдания с точки зрения архитектуры приложения
-// тут можно побить компонентно побольше, но в рамках тз нет смысла особо
 export default {
   props: {
     items: {
       type: Array,
       required: true
-    },
-    favorites: {
-      type: Array,
-      default: () => []
     }
   },
   methods: {

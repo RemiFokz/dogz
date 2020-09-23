@@ -4,6 +4,33 @@ export const state = () => ({
   favorites: [],
   random: []
 });
+export const getters = {
+  byBreedDogs(state) {
+    return state.byBreed.map(el => {
+      return {
+        img: el,
+        favorite: state.favorites.includes(el)
+      };
+    });
+  },
+  randomDogs(state) {
+    return state.random.map(el => {
+      return {
+        img: el,
+        favorite: state.favorites.includes(el)
+      };
+    });
+  },
+  favoritesDogs(state) {
+    return state.favorites.map(el => {
+      return {
+        img: el,
+        favorite: true
+      };
+    });
+  }
+};
+
 export const mutations = {
   SET_ALL_BREEDS(state, breads) {
     state.allBreeds = [...new Set(Object.keys(breads))];

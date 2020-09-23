@@ -3,15 +3,15 @@
     <WithScroll
       :perPage="perPage"
       :inView="inView"
-      :count="byBreed.length"
+      :count="byBreedDogs.length"
       @needLoad="load"
     >
-      <GridList :favorites="favorites" v-if="!loading" :items="byPage" />
+      <GridList v-if="!loading" :items="byPage" />
     </WithScroll>
   </div>
 </template>
 <script>
-import { mapActions, mapState, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   data: () => ({
     perPage: 20,
@@ -39,12 +39,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      byBreed: "byBreed",
-      favorites: "favorites"
+    ...mapGetters({
+      byBreedDogs: "byBreedDogs"
     }),
     byPage() {
-      return [...this.byBreed].splice(0, this.inView * this.page);
+      return this.byBreedDogs.slice(0, this.inView * this.page);
     }
   }
 };
